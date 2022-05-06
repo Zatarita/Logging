@@ -27,7 +27,7 @@ int main(..)
     auto p_handle = mainPref.addProbe(new Log::Wrapper::StdOut());
     main << "This will be written to stream";
     
-	mainPref.addProbe(new Log::Wrapper::FileOut("logging/output.log"));
+    mainPref.addProbe(new Log::Wrapper::FileOut("logging/output.log"));
     main << "This will be written to stream, AND file";
     
     // if you want to delete a probe, you hold can delete the handle
@@ -62,7 +62,7 @@ int main(..)
 
     // but in this case we're going to set a minimum listen level
     // By default it is set to Info
-	mainPref.setLevel(Log::Level::Error);
+    mainPref.setLevel(Log::Level::Error);
 
     // Now anything we write that isn't at Error or above
     // will be filtered out from presentation.
