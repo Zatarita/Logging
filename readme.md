@@ -188,8 +188,8 @@ int main(..)
 ```
     Info - This will be presented to screen basic
     ...
-    Info - This will be presented a bit later
-    Info 2:25:43pm - main[1605]: This will be presented a bit later
+    Warning - This will be presented a bit later
+    Warning 2:25:43pm - main[1605]: This will be presented a bit later
 ```
 
 ## Custom Probes
