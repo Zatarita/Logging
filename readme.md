@@ -24,7 +24,7 @@ int main(..)
     // The logger maintains the lifetime of the probes.
     // but it will return a handle to the newly created probe.
     // By default I have defined two wrappers. StdOut, and FileOut
-	auto p_handle = mainPref.addProbe(new Log::Wrapper::StdOut());
+    auto p_handle = mainPref.addProbe(new Log::Wrapper::StdOut());
     main << "This will be written to stream";
     
 	mainPref.addProbe(new Log::Wrapper::FileOut("logging/output.log"));
@@ -58,7 +58,7 @@ int main(..)
     // Set up a basic stdout logger
     Log::Logger& main = Log::getLog("main");
     Log::Behaviour& mainPref = main.getBehaviour();
-	mainPref.addProbe(new Log::Wrapper::StdOut());
+    mainPref.addProbe(new Log::Wrapper::StdOut());
 
     // but in this case we're going to set a minimum listen level
     // By default it is set to Info
@@ -79,6 +79,15 @@ int main(..)
     main.write("This still wont be presented to screen or file as level is info");
 }
 ```
+example output
+```
+stdout:
+    This will be presented to screen
+    This will be presented to screen, and written to file
+
+log.txt:
+    This will be presented to screen, and written to file
+```
 
 ## Aggregates
 ```c++
@@ -90,7 +99,7 @@ int main(..)
     // This stdout only prints warning messages and above
     Log::Logger& main = Log::getLog("main");
     Log::Behaviour& mainPref = main.getBehaviour();
-	mainPref.addProbe(new Log::Wrapper::StdOut());
+    mainPref.addProbe(new Log::Wrapper::StdOut());
     mainPref.setLevel(Log::Level::Warning);
 
     // but this time we're going to set up another logger
@@ -131,7 +140,7 @@ int main(..)
     // Setup our stdout again
     Log::Logger& main = Log::getLog("main");
     Log::Behaviour& mainPref = main.getBehaviour();
-	mainPref.addProbe(new Log::Wrapper::StdOut());    
+    mainPref.addProbe(new Log::Wrapper::StdOut());    
     mainPref.setLevel(Log::Level::Warning);
 
     // We can also set formatting strings
@@ -151,7 +160,7 @@ int main(..)
     // Set up a second logger
     Log::Logger& mainDebug = Log::getLog("mainDebug");
     Log::Behaviour& mainDebugPref = main.getBehaviour();
-	mainDebugPref.addProbe(new Log::Wrapper::StdOut());
+    mainDebugPref.addProbe(new Log::Wrapper::StdOut());
     mainDebugPref.setLevel(Log::Level::Debug);
     mainDebugPref.setFormatString("$(level) - $(message)");
 
