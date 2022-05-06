@@ -17,6 +17,8 @@ int main(..)
     // if not it will create the log with this name.
     // This means once we set up the loggers the settings will stay
     // and we can globally request them at any time
+    
+    // This means we can set up the log once and just request it whenever c:
     Log::Logger& main = Log::getLog("main");
     Log::Behaviour& mainPref = main.getBehaviour();
 
@@ -117,8 +119,12 @@ int main(..)
     mainDebugPref.addProbe(new Log::Wrapper::FileOut("Log.txt"));
     mainDebugPref.setLevel(Log::Level::Debug);
 
-    // We can create an aggreage that takes the loggers as a list
+    // We can create a local aggreage that takes the loggers as a list
     Log::Aggregate logs( { &main, &mainDebug } );
+    
+    // or we can request an aggregate from the log core and get a global
+    // aggregate we can pull up from anywhere.
+    Log::Aggregate& globalAggregate( "globalAggregate", { &main, &mainDebug } );
 
     // We can use the aggregate object to propegate our log output
     // to multiple locations at once. The logs will still
@@ -158,6 +164,7 @@ int main(..)
     //
     // y m d H M S     - Year/Month/Day/Hour/Min/Second
     // 12H p           - 12 hour format/period(am/pm)
+    // dn mn           - day name/month day
     // message         - The actual message to print
     // level           - level of the message being broadcasted
     // name            - name of the logger
