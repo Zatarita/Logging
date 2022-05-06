@@ -188,7 +188,7 @@ int main(..)
     mainDebugPref.setLevel(Log::Level::Debug);
     mainDebugPref.setFormatString("$(level) - $(message)");
 
-    // lets create an aggregate
+    // lets create a local aggregate
     Log::Aggregate logs({&main, &mainDebug});
 
     // Now when we print the message, the first one only gets caught by the
