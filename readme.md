@@ -190,7 +190,7 @@ int main(..)
 #include <iostream>
 
 // For this example I'm just going to show an example std::cout wrapper
-class MyOutputWrapper : public OutputWrapper
+class MyOutputWrapper : public Log::OutputWrapper
 {
 public:
     // Output wrapper is an abstract class, the only method not defined
