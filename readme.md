@@ -34,6 +34,12 @@ int main(..)
     mainPref.deleteProbe(p_handle);
     main << "This will be written to file";
     
+    // There is also a VAR macro set to expand the value of variables
+    int x = 0x1a2;
+    std::string test = "This is a test of the emergency broadcast system".
+    main << VAR(x); # expands out to "x: 418"
+    main << VAR(test); # expands out to "test: This is a test of the emergency broadcast system"
+    
     return 0;
 })
 ```
@@ -47,6 +53,8 @@ console:
 logging/output.log:
    This will be written to stream, AND file
    This will be written to file
+   x: 418
+   test: This is a test of the emergency broadcast system
 ```
 
 ## Levels
