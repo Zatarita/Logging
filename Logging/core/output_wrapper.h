@@ -1,10 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <filesystem>
-#include <fstream>
-
-#include <string>
 #include <string_view>
 
 namespace Log

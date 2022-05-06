@@ -1,10 +1,9 @@
 #pragma once
 
-#include <string>
 #include <sstream>
 #include <thread>
-#include <iomanip>
 #include <chrono>
+#include <map>
 
 #include <windows.h>
 
@@ -16,7 +15,7 @@ namespace Log
 	class Logger
 	{
 		Behaviour loggingBehaviour{};
-		std::string name{ "" };
+		std::string name{ "__ERROR_NAME__" };
 
 	public:
 		Logger(std::string name = "", const Behaviour& behaviour = Behaviour());
@@ -24,29 +23,20 @@ namespace Log
 		[[nodiscard]] Behaviour& getBehaviour() noexcept;
 
 		void operator<<(std::string_view str) const noexcept;
-
-		void write(std::string_view str, const Log::Level& level = Log::Level::Info) const noexcept
-		{
-			if (level < loggingBehaviour.getLevel())
-				return;
-
-			for (auto& probe : loggingBehaviour.getProbes())
-				probe->write( format(str, level) );
-		}
+		void write(std::string_view str, const Log::Level& level = Log::Level::Info) const noexcept;
 
 	private:
 		// Before we use it as a formatting string we're going to
 		// change extract special characters like date and time
 		std::string format(std::string_view str, const Log::Level& level = Log::Level::Info) const noexcept;
+		static void findAndReplaceAll(std::string& data, std::string_view toSearch, std::string_view replaceStr);
 
-		static void findAndReplaceAll(std::string& data, std::string_view toSearch, std::string_view replaceStr)
-		{
-			size_t pos = data.find(toSearch);
-			while (pos != std::string::npos)
-			{
-				data.replace(pos, toSearch.size(), replaceStr);
-				pos = data.find(toSearch, pos + replaceStr.size());
-			}
-		}
+		/* Formatter functions */
+		std::string getTime(std::string_view requestedTime) const noexcept;
+		std::string getLevel(const Log::Level& level) const noexcept;
+		std::string getPID(const bool hex = false) const noexcept;
+		std::string getThread(const bool hex = false) const noexcept;
+
+		static std::string getInt(const int& value, const bool hex = false) noexcept;
 	};
 }

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <fstream>
+#include <filesystem>
+
 #include "../output_wrapper.h"
 
 namespace Log

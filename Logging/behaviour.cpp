@@ -4,7 +4,7 @@ namespace Log
 {
 	Behaviour::~Behaviour()
 	{
-		for (auto& probe : probes)
+		for (auto* probe : probes)
 			delete probe;
 	}
 

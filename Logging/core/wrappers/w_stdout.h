@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "../output_wrapper.h"
 
 namespace Log
