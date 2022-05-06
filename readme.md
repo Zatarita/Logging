@@ -181,7 +181,7 @@ int main(..)
     ...
     // The second message gets caught by both logs
     // and formatted into both styles
-    logs.write("This will be presented a bit later");
+    logs.write("This will be presented a bit later", Log::Level::Error);
 }
 ```
 ### example output
