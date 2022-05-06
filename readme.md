@@ -42,6 +42,10 @@ int main(..)
     main << VAR(x); # expands out to "x: 418"
     main << VAR(test); # expands out to "test: This is a test of the emergency broadcast system"
     
+    // Later if we wish to pull this already setup logger we can recreate the reference, or if you prefer use the pointer notation
+    // Log::Logger& main = Log::getLog("main");
+    // Log::Logger* main = Log::getLog_p("main");    
+    
     return 0;
 })
 ```
@@ -124,7 +128,12 @@ int main(..)
     
     // or we can request an aggregate from the log core and get a global
     // aggregate we can pull up from anywhere.
-    Log::Aggregate& globalAggregate( "globalAggregate", { &main, &mainDebug } );
+    Log::Aggregate& globalAggregate = Log::getAggregate( "globalAggregate", { &main, &mainDebug } );
+    
+    // Later if we want to pull it back up all we need to do is request the name alone (also if you prefer you can use pointer notation)
+    // Log::Aggregate& globalAggregate = Log::getAggregate( "globalAggregate" );
+    // Log::Aggregate* globalAggregate = Log::getAggregate_p( "globalAggregate" );
+    
 
     // We can use the aggregate object to propegate our log output
     // to multiple locations at once. The logs will still
